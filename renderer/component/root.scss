@@ -1,0 +1,41 @@
+@charset "utf-8";
+
+
+html {
+  font-family: "Noto Sans Display", "Noto Sans JP", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  font-feature-settings: "palt" 1, "pkna" 1, "lnum" 1, "kern" 1, "ss04" 1;
+  color: oklch(20% 0 0);
+  margin: 0rem;
+  padding: 0rem;
+  line-height: 1;
+  text-decoration-skip-ink: none;
+}
+
+:global(#root) {
+  background-image: linear-gradient(to right bottom, oklch(95% 0 0), oklch(90% 0 0) 50%, oklch(95% 0 100));
+  background-attachment: fixed;
+  overflow: hidden;
+}
+
+html,
+body,
+:global(#root) {
+  height: 100%;
+  user-select: none;
+}
+
+*:where(:not(iframe, canvas, img, svg, video):not(svg *)) {
+  all: unset;
+  display: revert;
+  min-block-size: 0rem;
+  min-inline-size: 0rem;
+  background-origin: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
