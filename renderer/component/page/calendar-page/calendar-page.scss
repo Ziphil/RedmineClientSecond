@@ -9,4 +9,38 @@
 .main {
   padding-inline: 16px;
   padding-block: 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+.heading {
+  margin-block-end: 16px;
+  display: flex;
+  align-items: center;
+  flex: 0 0 auto;
+}
+
+.side {
+  font-size: 24px;
+  flex: 0 0 auto;
+}
+
+.center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1 1 auto;
+}
+
+.year {
+  font-family: var(--special-font-family);
+}
+
+.month {
+  font-family: var(--special-font-family);
+  font-size: 32px;
+}
+
+.calendar {
+  flex: 1 1 auto;
 }

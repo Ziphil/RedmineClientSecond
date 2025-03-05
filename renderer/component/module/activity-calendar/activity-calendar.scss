@@ -1,0 +1,10 @@
+@charset "utf-8";
+
+
+.root {
+  row-gap: 8px;
+  column-gap: 8px;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: repeat(6, 1fr);
+}

@@ -1,10 +1,15 @@
 //
 
+import {faArrowLeft, faArrowRight} from "@fortawesome/pro-light-svg-icons";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import dayjs from "dayjs";
 import {ReactElement} from "react";
 import {useParams} from "react-router-dom";
 import {create} from "/renderer/component/create";
+import {ActivityCalendar} from "/renderer/component/module/activity-calendar";
 import {Page} from "/renderer/component/module/page";
+import {useSettings} from "/renderer/hook/settings";
+import {data} from "/renderer/util/data";
 
 
 export const CalendarPage = create(
@@ -13,13 +18,27 @@ export const CalendarPage = create(
   }: {
   }): ReactElement {
 
+    const settings = useSettings();
+
     const {monthString} = useParams();
     const month = dayjs(monthString, "YYYY-MM");
 
     return (
       <Page styleName="root">
         <main styleName="main">
-          {month.format("YYYY/MM")}
+          <div styleName="heading">
+            <div styleName="side" {...data({position: "left"})}>
+              <FontAwesomeIcon icon={faArrowLeft}/>
+            </div>
+            <div styleName="center">
+              <div styleName="year">{month.format("YYYY")}</div>
+              <div styleName="month">{month.format("M")}</div>
+            </div>
+            <div styleName="side" {...data({position: "right"})}>
+              <FontAwesomeIcon icon={faArrowRight}/>
+            </div>
+          </div>
+          <ActivityCalendar styleName="calendar" month={month} exceptionalOffDates={settings.exceptionalOffDates}/>
         </main>
         <div styleName="side">
         </div>
