@@ -1,5 +1,6 @@
 //
 
+import dayjs from "dayjs";
 import dotenv from "dotenv";
 import {
   App,
@@ -132,7 +133,8 @@ export class Main {
 
   private createMainWindow(): BrowserWindow {
     const options = {width: 960, height: 720, minWidth: 960, minHeight: 720};
-    const window = this.createWindow(null, "/chart", {}, options);
+    const monthString = dayjs().format("YYYY-MM");
+    const window = this.createWindow(null, `/calendar/${monthString}`, {}, options);
     this.mainWindow = window;
     this.connectReloadClient(window);
     return window;

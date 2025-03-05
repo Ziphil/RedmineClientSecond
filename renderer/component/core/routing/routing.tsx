@@ -5,12 +5,12 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {ReactElement, Suspense} from "react";
 import {RouterProvider, createHashRouter} from "react-router-dom";
 import {create} from "/renderer/component/create";
-import {ChartPage} from "/renderer/component/page/chart-page";
+import {CalendarPage} from "/renderer/component/page/calendar-page";
 import {useAutoUpdateToday} from "/renderer/hook/today";
 
 
 const router = createHashRouter([
-  {path: "/chart", element: <ChartPage/>}
+  {path: "/calendar/:monthString", element: <CalendarPage/>}
 ]);
 
 
