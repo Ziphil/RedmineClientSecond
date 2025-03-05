@@ -7,13 +7,15 @@ import {create} from "/renderer/component/create";
 export const Page = create(
   require("./page.scss"), "Page",
   function ({
-    children
+    children,
+    className
   }: {
-    children: ReactNode
+    children: ReactNode,
+    className?: string
   }): ReactElement {
 
     return (
-      <div styleName="root">
+      <div styleName="root" className={className}>
         {children}
       </div>
     );

@@ -8,7 +8,7 @@ import {Page} from "/renderer/component/module/page";
 
 
 export const CalendarPage = create(
-  null, "CalendarPage",
+  require("./calendar-page.scss"), "CalendarPage",
   function ({
   }: {
   }): ReactElement {
@@ -17,8 +17,12 @@ export const CalendarPage = create(
     const month = dayjs(monthString, "YYYY-MM");
 
     return (
-      <Page>
-        {month.format("YYYY/MM")}
+      <Page styleName="root">
+        <main styleName="main">
+          {month.format("YYYY/MM")}
+        </main>
+        <div styleName="side">
+        </div>
       </Page>
     );
 

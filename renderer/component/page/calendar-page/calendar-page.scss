@@ -1,0 +1,12 @@
+@charset "utf-8";
+
+
+.root {
+  display: grid;
+  grid-template-columns: 8fr 3fr;
+}
+
+.main {
+  padding-inline: 16px;
+  padding-block: 16px;
+}
