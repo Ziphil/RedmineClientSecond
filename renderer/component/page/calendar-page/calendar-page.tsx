@@ -1,6 +1,6 @@
 //
 
-import {faArrowLeft, faArrowRight} from "@fortawesome/pro-light-svg-icons";
+import {faArrowLeft, faArrowRight} from "@fortawesome/sharp-light-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import dayjs from "dayjs";
 import {ReactElement, useState} from "react";
@@ -9,6 +9,7 @@ import {TransitionLink} from "/renderer/component/atom/transition-link";
 import {create} from "/renderer/component/create";
 import {ActivityCalendar} from "/renderer/component/module/activity-calendar";
 import {Page} from "/renderer/component/module/page";
+import {useSuspenseResponse} from "/renderer/hook/request";
 import {useSettings} from "/renderer/hook/settings";
 import {useToday} from "/renderer/hook/today";
 import {data} from "/renderer/util/data";
@@ -25,6 +26,8 @@ export const CalendarPage = create(
 
     const {monthString} = useParams();
     const month = dayjs(monthString, "YYYY-MM");
+
+    const [activities] = useSuspenseResponse("fetchMonthlyActivities", window.api.fetchMonthlyActivities, {month: month.format("YYYY-MM")});
 
     const [activeDate, setActiveDate] = useState(() => {
       if (today.isSame(month, "month")) {
@@ -56,6 +59,7 @@ export const CalendarPage = create(
           <ActivityCalendar
             styleName="calendar"
             month={month}
+            activities={activities}
             exceptionalOffDates={settings.exceptionalOffDates}
             onClick={setActiveDate}
           />

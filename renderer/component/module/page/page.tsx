@@ -1,7 +1,7 @@
 //
 
-import {faCalendar, faChartBar} from "@fortawesome/pro-light-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faCalendar, faChartBar} from "@fortawesome/sharp-light-svg-icons";
 import {ReactElement, ReactNode} from "react";
 import {useMatch} from "react-router-dom";
 import {TransitionLink} from "/renderer/component/atom/transition-link";
