@@ -4,8 +4,12 @@
 :root {
   --glob-font-family: "Noto Sans Display", "Noto Sans JP", sans-serif;
   --glob-special-font-family: "Jost", sans-serif;
-  --glob-background-first-color: oklch(95% 0 0);
-  --glob-background-second-color: oklch(90% 0 0);
+  --glob-normal-border-color: oklch(100% 0 0);
+  --glob-normal-background-color: oklch(100% 0 0);
+  --glob-red-background-color: oklch(95% 0.03 350);
+  --glob-red-border-color: oklch(98% 0.03 350);
+  --glob-blue-background-color: oklch(95% 0.03 220);
+  --glob-blue-border-color: oklch(98% 0.03 220);
 }
 
 html {
@@ -21,7 +25,7 @@ html {
 }
 
 :global(#root) {
-  background-image: linear-gradient(to right bottom, var(--glob-background-first-color) 10%, var(--glob-background-second-color), var(--glob-background-first-color) 90%);
+  background-image: linear-gradient(to right bottom, oklch(90% 0 0) 10%, oklch(88% 0 0), oklch(90% 0 0) 90%);
   background-attachment: fixed;
   overflow: hidden;
 }

@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-closing-bracket-location */
 
-import {faCircleNotch} from "@fortawesome/pro-regular-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faCircleNotch} from "@fortawesome/sharp-light-svg-icons";
 import {ReactElement, Suspense} from "react";
 import {RouterProvider, createHashRouter} from "react-router-dom";
 import {create} from "/renderer/component/create";

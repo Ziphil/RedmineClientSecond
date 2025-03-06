@@ -4,7 +4,9 @@ import {Dayjs} from "dayjs";
 import {ReactElement, useCallback} from "react";
 import {create} from "/renderer/component/create";
 import {TimeView} from "/renderer/component/module/time-view";
+import {useToday} from "/renderer/hook/today";
 import {Activity} from "/renderer/type";
+import {data} from "/renderer/util/data";
 import {isOffDate} from "/renderer/util/date";
 
 
@@ -22,15 +24,20 @@ export const ActivityCalendarItem = create(
     onClick: (date: Dayjs) => void
   }): ReactElement {
 
+    const today = useToday();
+
     const totalTime = activities.reduce((time, activity) => time + activity.time, 0);
+
     const off = isOffDate(date, exceptionalOffDates);
+    const now = today.isSame(date, "date");
+    const alert = date.isBefore(today, "date") && totalTime < 1000 * 60 * 60 * 8;
 
     const handleClick = useCallback(() => {
       onClick(date);
     }, [date, onClick]);
 
     return (
-      <button styleName="root" type="button" disabled={off} onClick={handleClick}>
+      <button styleName="root" type="button" onClick={handleClick} {...data({off, now, alert})}>
         <div styleName="heading">
           <div styleName="day">
             {date.format("D")}
