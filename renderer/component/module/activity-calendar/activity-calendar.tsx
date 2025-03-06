@@ -12,10 +12,12 @@ export const ActivityCalendar = create(
   function ({
     month,
     exceptionalOffDates,
+    onClick,
     className
   }: {
     month: Dayjs,
     exceptionalOffDates: Array<string>,
+    onClick: (date: Dayjs) => void,
     className?: string
   }): ReactElement {
 
@@ -31,7 +33,7 @@ export const ActivityCalendar = create(
           <ActivityCalendarDummyItem key={index}/>
         ))}
         {dates.map((date) => (
-          <ActivityCalendarItem key={date.date()} date={date} exceptionalOffDates={exceptionalOffDates}/>
+          <ActivityCalendarItem key={date.date()} date={date} exceptionalOffDates={exceptionalOffDates} onClick={onClick}/>
         ))}
         {Array.from({length: succeedingDateCount}).map((dummy, index) => (
           <ActivityCalendarDummyItem key={index}/>

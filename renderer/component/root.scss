@@ -2,14 +2,14 @@
 
 
 :root {
-  --font-family: "Noto Sans Display", "Noto Sans JP", sans-serif;
-  --special-font-family: "Jost", sans-serif;
-  --background-first-color: oklch(95% 0 0);
-  --background-second-color: oklch(90% 0 0);
+  --glob-font-family: "Noto Sans Display", "Noto Sans JP", sans-serif;
+  --glob-special-font-family: "Jost", sans-serif;
+  --glob-background-first-color: oklch(95% 0 0);
+  --glob-background-second-color: oklch(90% 0 0);
 }
 
 html {
-  font-family: var(--font-family);
+  font-family: var(--glob-font-family);
   font-size: 16px;
   font-weight: 350;
   font-feature-settings: "palt" 1, "pkna" 1, "lnum" 1, "kern" 1, "ss04" 1;
@@ -21,7 +21,7 @@ html {
 }
 
 :global(#root) {
-  background-image: linear-gradient(to right bottom, var(--background-first-color) 10%, var(--background-second-color), var(--background-first-color) 90%);
+  background-image: linear-gradient(to right bottom, var(--glob-background-first-color) 10%, var(--glob-background-second-color), var(--glob-background-first-color) 90%);
   background-attachment: fixed;
   overflow: hidden;
 }
