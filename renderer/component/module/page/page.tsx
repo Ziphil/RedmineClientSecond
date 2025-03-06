@@ -33,8 +33,10 @@ export const Page = create(
             <FontAwesomeIcon icon={faChartBar}/>
           </TransitionLink>
         </aside>
-        <main styleName="main" className={className}>
-          {children}
+        <main styleName="main">
+          <div styleName="main-content" className={className}>
+            {children}
+          </div>
         </main>
       </div>
     );

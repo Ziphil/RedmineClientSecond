@@ -5,6 +5,7 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import dayjs from "dayjs";
 import {ReactElement, useState} from "react";
 import {useParams} from "react-router-dom";
+import {TransitionLink} from "/renderer/component/atom/transition-link";
 import {create} from "/renderer/component/create";
 import {ActivityCalendar} from "/renderer/component/module/activity-calendar";
 import {Page} from "/renderer/component/module/page";
@@ -38,14 +39,18 @@ export const CalendarPage = create(
         <section styleName="main">
           <div styleName="heading">
             <div styleName="side" {...data({position: "left"})}>
-              <FontAwesomeIcon icon={faArrowLeft}/>
+              <TransitionLink styleName="link" to={`/calendar/${month.subtract(1, "month").format("YYYY-MM")}`}>
+                <FontAwesomeIcon icon={faArrowLeft}/>
+              </TransitionLink>
             </div>
             <div styleName="center">
               <div styleName="year">{month.format("YYYY")}</div>
               <div styleName="month">{month.format("M")}</div>
             </div>
             <div styleName="side" {...data({position: "right"})}>
-              <FontAwesomeIcon icon={faArrowRight}/>
+              <TransitionLink styleName="link" to={`/calendar/${month.add(1, "month").format("YYYY-MM")}`}>
+                <FontAwesomeIcon icon={faArrowRight}/>
+              </TransitionLink>
             </div>
           </div>
           <ActivityCalendar

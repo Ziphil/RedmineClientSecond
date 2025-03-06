@@ -15,10 +15,8 @@ export const TransitionLink = create(
     to: string | Partial<Path>
   }): ReactElement {
 
-    const props = {["unstable_viewTransition"]: true};
-
     return (
-      <Link to={to} styleName="root" {...props} {...data}>
+      <Link to={to} styleName="root" viewTransition={true} {...data}>
         {children}
       </Link>
     );
