@@ -24,7 +24,7 @@ function createActivity(rawEntry: Record<string, any>): Activity {
     id: rawEntry["id"],
     project: {
       id: rawEntry["project"]["id"],
-      name: rawEntry["project"]["name"]
+      name: rawEntry["project"]["name"].replace(/^\d+(-|_)/, "")
     },
     issue: ("issue" in rawEntry) ? {
       id: rawEntry["issue"]["id"]

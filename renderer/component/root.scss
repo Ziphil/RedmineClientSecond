@@ -4,10 +4,13 @@
 :root {
   --glob-font-family: "Noto Sans Display", "Noto Sans JP", sans-serif;
   --glob-special-font-family: "Jost", sans-serif;
+  --glob-normal-text-color: oklch(40% 0 0);
   --glob-normal-border-color: oklch(100% 0 0);
   --glob-normal-background-color: oklch(100% 0 0);
+  --glob-red-text-color: oklch(50% 0.15 350);
   --glob-red-background-color: oklch(95% 0.03 350);
   --glob-red-border-color: oklch(98% 0.03 350);
+  --glob-blue-text-color: oklch(50% 0.15 220);
   --glob-blue-background-color: oklch(95% 0.03 220);
   --glob-blue-border-color: oklch(98% 0.03 220);
 }
@@ -17,7 +20,7 @@ html {
   font-size: 16px;
   font-weight: 350;
   font-feature-settings: "palt" 1, "pkna" 1, "lnum" 1, "kern" 1, "ss04" 1;
-  color: oklch(40% 0 0);
+  color: var(--glob-normal-text-color);
   margin: 0rem;
   padding: 0rem;
   line-height: 1;

@@ -1,7 +1,10 @@
 //
 
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faAngleRight} from "@fortawesome/sharp-light-svg-icons";
 import {Dayjs} from "dayjs";
 import {ReactElement, useCallback} from "react";
+import {SingleLineText} from "/renderer/component/atom/single-line-text";
 import {create} from "/renderer/component/create";
 import {TimeView} from "/renderer/component/module/time-view";
 import {useToday} from "/renderer/hook/today";
@@ -48,6 +51,14 @@ export const ActivityCalendarItem = create(
             </div>
           )}
         </div>
+        <ol styleName="list">
+          {activities.map((activity, index) => (
+            <li key={index} styleName="item">
+              <FontAwesomeIcon styleName="item-icon" icon={faAngleRight}/>
+              <SingleLineText styleName="item-name">{activity.project.name}</SingleLineText>
+            </li>
+          ))}
+        </ol>
       </button>
     );
 

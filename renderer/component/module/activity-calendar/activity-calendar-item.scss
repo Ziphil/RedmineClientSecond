@@ -3,14 +3,17 @@
 
 .root {
   &[data-alert] {
-    --background-color: var(--glob-red-background-color);
-    --border-color: var(--glob-red-border-color);
+    --time-color: var(--glob-red-text-color);
+    --background-color: var(--glob-normal-background-color);
+    --border-color: var(--glob-normal-border-color);
   }
   &[data-now] {
+    --time-color: var(--glob-normal-text-color);
     --background-color: var(--glob-blue-background-color);
     --border-color: var(--glob-blue-border-color);
   }
   &:not([data-alert]):not([data-now]) {
+    --time-color: var(--glob-normal-text-color);
     --background-color: var(--glob-normal-background-color);
     --border-color: var(--glob-normal-border-color);
   }
@@ -19,6 +22,7 @@
 .root {
   padding-block: 8px;
   padding-inline: 8px;
+  row-gap: 6px;
   border: solid 1px var(--border-color);
   display: flex;
   flex-direction: column;
@@ -39,6 +43,7 @@
 .heading {
   display: flex;
   justify-content: space-between;
+  flex: 0 0 auto;
 }  
 
 .day {
@@ -52,5 +57,28 @@
   font-size: 32px;
   font-family: var(--glob-special-font-family);
   font-style: italic;
+  color: var(--time-color);
   white-space: nowrap;
+}
+
+.list {
+  row-gap: 2px;
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  overflow: hidden;
+}
+
+.item {
+  column-gap: 4px;
+  display: flex;
+  flex: 0 0 auto;
+}
+
+.item-icon {
+  color: oklch(from currentcolor l c h / 0.5)
+}
+
+.item-name {
+  word-break: break-all;
 }
