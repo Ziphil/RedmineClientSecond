@@ -21,15 +21,17 @@ export const Page = create(
   }): ReactElement {
 
     const today = useToday();
+
     const match = useMatch("/:primaryName/*");
+    const primaryName = match?.params.primaryName;
 
     return (
       <div styleName="root">
         <aside styleName="bar">
-          <TransitionLink styleName="link" to={`/calendar/${today.format("YYYY-MM")}`} {...data({active: match?.params.primaryName === "calendar"})}>
+          <TransitionLink styleName="link" to={`/calendar/${today.format("YYYY-MM")}`} {...data({active: primaryName === "calendar"})}>
             <FontAwesomeIcon icon={faCalendar}/>
           </TransitionLink>
-          <TransitionLink styleName="link" to="/chart" {...data({active: match?.params.primaryName === "chart"})}>
+          <TransitionLink styleName="link" to="/chart" {...data({active: primaryName === "chart"})}>
             <FontAwesomeIcon icon={faChartBar}/>
           </TransitionLink>
         </aside>

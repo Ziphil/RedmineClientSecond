@@ -1,7 +1,7 @@
 //
 
-import {faArrowLeft, faArrowRight} from "@fortawesome/sharp-light-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faArrowLeft, faArrowRight} from "@fortawesome/sharp-light-svg-icons";
 import dayjs from "dayjs";
 import {ReactElement, useState} from "react";
 import {useParams} from "react-router-dom";
