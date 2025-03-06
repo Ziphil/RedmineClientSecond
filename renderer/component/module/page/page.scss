@@ -20,7 +20,7 @@
 
 .main {
   display: grid;
-  border-inline-start: solid 1px oklch(100% 0 0);
+  border-inline-start: solid 1px var(--glob-normal-border-color);
   box-shadow: 0px 0px 8px oklch(0% 0 0 / 0.1);
   grid-template-columns: 1fr;
 }
