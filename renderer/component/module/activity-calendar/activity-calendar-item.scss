@@ -29,6 +29,7 @@
 .day {
   font-size: 16px;
   font-family: var(--glob-special-font-family);
+  white-space: nowrap;
 }
 
 .time {
@@ -36,4 +37,5 @@
   font-size: 32px;
   font-family: var(--glob-special-font-family);
   font-style: italic;
+  white-space: nowrap;
 }
