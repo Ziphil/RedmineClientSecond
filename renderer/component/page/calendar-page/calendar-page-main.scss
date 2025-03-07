@@ -1,0 +1,42 @@
+@charset "utf-8";
+
+
+.root {
+  display: flex;
+  flex-direction: column;
+}
+
+.heading {
+  margin-block-end: 16px;
+  padding-inline: 4px;
+  display: flex;
+  align-items: center;
+  flex: 0 0 auto;
+}
+
+.link {
+  font-size: 30px;
+  cursor: pointer;
+}
+
+.center {
+  column-gap: 8px;
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  flex: 1 1 auto;
+}
+
+.year {
+  font-size: 20px;
+  font-family: var(--glob-special-font-family);
+}
+
+.month {
+  font-size: 32px;
+  font-family: var(--glob-special-font-family);
+}
+
+.calendar {
+  flex: 1 1 auto;
+}
