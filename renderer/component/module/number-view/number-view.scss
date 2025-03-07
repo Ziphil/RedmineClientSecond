@@ -1,0 +1,20 @@
+@charset "utf-8";
+
+
+.root {
+  width: 2.5rem;
+  margin-inline-end: 0.4em;
+  font-family: var(--glob-special-font-family);
+  font-style: italic;
+  background-color: oklch(from var(--glob-normal-background-color) l c h / 0.5);
+  display: inline-block;
+  text-align: center;
+  &[data-project] {
+    padding-inline-start: 0.05em;
+    letter-spacing: 0.05em;
+  }
+  &:not([data-project]) {
+    padding-inline-end: 0.03em;
+    letter-spacing: -0.03em;
+  }
+}

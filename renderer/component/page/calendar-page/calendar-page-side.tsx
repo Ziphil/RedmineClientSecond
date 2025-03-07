@@ -4,6 +4,7 @@ import {Dayjs} from "dayjs";
 import {ReactElement} from "react";
 import {SingleLineText} from "/renderer/component/atom/single-line-text";
 import {create} from "/renderer/component/create";
+import {NumberView} from "/renderer/component/module/number-view";
 import {PageSide} from "/renderer/component/module/page";
 import {TimeView} from "/renderer/component/module/time-view";
 import {useResponse} from "/renderer/hook/request";
@@ -43,7 +44,7 @@ export const CalendarPageSide = create(
             {activities.map((activity, index) => (
               <li key={index} styleName="item">
                 <div styleName="item-first">
-                  <span styleName="badge">{activity.issue?.id ?? "PJ"}</span>
+                  <NumberView styleName="item-number" number={activity.issue?.id ?? null}/>
                   <SingleLineText styleName="item-name">{activity.project.name}</SingleLineText>
                 </div>
                 <div styleName="item-second">
