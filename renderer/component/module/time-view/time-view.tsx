@@ -17,14 +17,14 @@ export const TimeView = create(
     const hour = Math.floor(time / 1000 / 60 / 60);
     const minute = Math.floor(time / 1000 / 60) % 60;
     const hourString = hour.toString();
-    const minuteString = (hour === 0) ? minute.toString() : minute.toString().padStart(2, "0");
+    const minuteString = minute.toString().padStart(2, "0");
 
     return (
       <span styleName="root" className={className}>
-        {(hour > 0) && [...hourString].map((digit, index) => (
+        {[...hourString].map((digit, index) => (
           <span key={index} styleName="digit">{digit}</span>
         ))}
-        {(hour > 0) && (
+        {(
           <span styleName="colon">:</span>
         )}
         {[...minuteString].map((digit, index) => (
