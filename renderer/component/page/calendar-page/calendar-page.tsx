@@ -32,7 +32,7 @@ export const CalendarPage = create(
     return (
       <Page styleName="root">
         <CalendarPageMain month={month} setActiveDate={setActiveDate}/>
-        <CalendarPageSide activeDate={activeDate}/>
+        <CalendarPageSide date={activeDate}/>
       </Page>
     );
 

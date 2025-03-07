@@ -42,7 +42,7 @@ export const ActivityCalendarItem = create(
     return (
       <button styleName="root" type="button" onClick={handleClick} {...data({off, now, alert})}>
         <div styleName="heading">
-          <div styleName="day">
+          <div styleName="date">
             {date.format("D")}
           </div>
           {(!off) && (

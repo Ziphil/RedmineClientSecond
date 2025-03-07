@@ -22,7 +22,6 @@
 .root {
   padding-block: 8px;
   padding-inline: 8px;
-  row-gap: 6px;
   border: solid 1px var(--border-color);
   display: flex;
   flex-direction: column;
@@ -46,7 +45,7 @@
   flex: 0 0 auto;
 }  
 
-.day {
+.date {
   font-size: 16px;
   font-family: var(--glob-special-font-family);
   white-space: nowrap;
@@ -62,6 +61,7 @@
 }
 
 .list {
+  margin-block-start: 6px;
   row-gap: 4px;
   display: flex;
   flex-direction: column;
@@ -70,12 +70,12 @@
 }
 
 .item {
-  column-gap: 4px;
   display: flex;
   flex: 0 0 auto;
 }
 
 .item-icon {
+  margin-inline-end: 0.25em;
   color: oklch(from currentcolor l c h / 0.5);
 }
 

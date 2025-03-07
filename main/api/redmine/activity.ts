@@ -19,6 +19,19 @@ export async function fetchMonthlyActivities({month}: {month: string}): Promise<
   return groupedActivities;
 }
 
+export async function fetchDailyActivities({date}: {date: string}): Promise< Array<Activity>> {
+  console.log("api called", "fetchDailyActivities");
+  const settings = await Settings.get();
+  const response = await settings.client.get("/time_entries.json", {params: {
+    from: dayjs(date).format("YYYY-MM-DD"),
+    to: dayjs(date).format("YYYY-MM-DD"),
+    userId: "me",
+    limit: 100
+  }});
+  const activities = response.data["timeEntries"].map(createActivity);
+  return activities;
+}
+
 function createActivity(rawEntry: Record<string, any>): Activity {
   const activity = {
     id: rawEntry["id"],

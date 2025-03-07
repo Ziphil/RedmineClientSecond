@@ -36,8 +36,9 @@ export const CalendarPageMain = create(
             </TransitionLink>
           </div>
           <div styleName="center">
-            <div styleName="year">{month.format("YYYY")}</div>
-            <div styleName="month">{month.format("M")}</div>
+            <span styleName="year">{month.format("YYYY")}</span>
+            <span styleName="slash">·</span>
+            <span styleName="month">{month.format("M")}</span>
           </div>
           <div styleName="heading-side" {...data({position: "right"})}>
             <TransitionLink styleName="link" to={`/calendar/${month.add(1, "month").format("YYYY-MM")}`}>
