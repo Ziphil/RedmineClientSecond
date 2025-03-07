@@ -1,0 +1,19 @@
+@charset "utf-8";
+
+
+.root {
+  padding-inline: 16px;
+  padding-block: 16px;
+  background-color: oklch(255% 0 0 / 0.2);
+  border-inline-start: solid 1px var(--glob-normal-border-color);
+  box-shadow: 0px 0px 8px oklch(0% 0 0 / 0.1);
+  flex: 0 0 auto;
+  box-sizing: border-box;
+  view-transition-name: page-side;
+  &[data-display] {
+    width: 20vi;
+  }
+  &:not([data-display]) {
+    width: 0vi;
+  }
+}

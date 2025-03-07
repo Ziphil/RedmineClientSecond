@@ -4,6 +4,8 @@
 :root {
   --glob-font-family: "Noto Sans Display", "Noto Sans JP", sans-serif;
   --glob-special-font-family: "Jost", sans-serif;
+  --glob-view-transition-duration: 0.4s;
+  --glob-minimal-transition-duration: 0.2s;
   --glob-normal-text-color: oklch(40% 0 0);
   --glob-normal-border-color: oklch(100% 0 0);
   --glob-normal-background-color: oklch(100% 0 0);

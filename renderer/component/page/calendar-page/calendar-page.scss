@@ -1,14 +1,7 @@
 @charset "utf-8";
 
 
-.root {
-  display: grid;
-  grid-template-columns: 8fr 3fr;
-}
-
 .main {
-  padding-inline: 16px;
-  padding-block: 16px;
   display: flex;
   flex-direction: column;
 }
@@ -22,32 +15,29 @@
 }
 
 .side {
-  flex: 0 0 auto;
 }
 
 .link {
   font-size: 30px;
-  transition: transform 0.2s;
   cursor: pointer;
-  &:hover {
-    transform: scale(1.05);
-  }
 }
 
 .center {
+  column-gap: 8px;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  align-items: baseline;
+  justify-content: center;
   flex: 1 1 auto;
 }
 
 .year {
+  font-size: 20px;
   font-family: var(--glob-special-font-family);
 }
 
 .month {
-  font-family: var(--glob-special-font-family);
   font-size: 32px;
+  font-family: var(--glob-special-font-family);
 }
 
 .calendar {

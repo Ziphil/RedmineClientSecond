@@ -1,0 +1,59 @@
+@charset "utf-8";
+
+
+.root {
+  padding-inline: 16px;
+  padding-block: 16px;
+  display: grid;
+  grid-template-columns: 1fr;
+  view-transition-name: page-main;
+}
+
+::view-transition-old(page-main) {
+  object-fit: none;
+  object-position: top left;
+  animation: fade-out ease both var(--glob-view-transition-duration);
+}
+
+::view-transition-new(page-main) {
+  object-fit: none;
+  object-position: top left;
+  animation: fade-in ease both var(--glob-view-transition-duration);
+}
+
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes slide-to-bottom {
+  from {
+    transform: translate(0%, 0%);
+  }
+  to {
+    transform: translate(0%, 5%)
+  }
+}
+
+@keyframes slide-from-bottom {
+  from {
+    transform: translate(0%, 5%);
+  }
+  to {
+    transform: translate(0%, 0%)
+  }
+}

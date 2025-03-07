@@ -31,7 +31,7 @@
   }
   &:not([data-off]) {
     background-color: oklch(from var(--background-color) l c h / 0.2);
-    transition: background-color 0.2s, transform 0.2s;
+    transition: background-color var(--glob-minimal-transition-duration), transform var(--glob-minimal-transition-duration);
     cursor: pointer;    
     &:hover {
       background-color: oklch(from var(--background-color) l c h / 0.5);

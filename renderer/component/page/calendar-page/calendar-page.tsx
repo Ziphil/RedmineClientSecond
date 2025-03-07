@@ -8,7 +8,7 @@ import {useParams} from "react-router-dom";
 import {TransitionLink} from "/renderer/component/atom/transition-link";
 import {create} from "/renderer/component/create";
 import {ActivityCalendar} from "/renderer/component/module/activity-calendar";
-import {Page} from "/renderer/component/module/page";
+import {Page, PageMain, PageSide} from "/renderer/component/module/page";
 import {useSuspenseResponse} from "/renderer/hook/request";
 import {useSettings} from "/renderer/hook/settings";
 import {useToday} from "/renderer/hook/today";
@@ -39,9 +39,9 @@ export const CalendarPage = create(
 
     return (
       <Page styleName="root">
-        <section styleName="main">
+        <PageMain styleName="main">
           <div styleName="heading">
-            <div styleName="side" {...data({position: "left"})}>
+            <div styleName="heading-side" {...data({position: "left"})}>
               <TransitionLink styleName="link" to={`/calendar/${month.subtract(1, "month").format("YYYY-MM")}`}>
                 <FontAwesomeIcon icon={faArrowLeft}/>
               </TransitionLink>
@@ -50,7 +50,7 @@ export const CalendarPage = create(
               <div styleName="year">{month.format("YYYY")}</div>
               <div styleName="month">{month.format("M")}</div>
             </div>
-            <div styleName="side" {...data({position: "right"})}>
+            <div styleName="heading-side" {...data({position: "right"})}>
               <TransitionLink styleName="link" to={`/calendar/${month.add(1, "month").format("YYYY-MM")}`}>
                 <FontAwesomeIcon icon={faArrowRight}/>
               </TransitionLink>
@@ -63,10 +63,10 @@ export const CalendarPage = create(
             exceptionalOffDates={settings.exceptionalOffDates}
             onClick={setActiveDate}
           />
-        </section>
-        <section styleName="side">
+        </PageMain>
+        <PageSide styleName="side">
           {activeDate.format("YYYY-MM-DD")}
-        </section>
+        </PageSide>
       </Page>
     );
 
