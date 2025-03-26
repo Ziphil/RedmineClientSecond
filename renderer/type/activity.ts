@@ -14,3 +14,12 @@ export interface Activity {
   date: DateString;
 
 }
+
+
+export interface ActivityForAdd {
+
+  project?: {id: Id};
+  issue?: {id: Id};
+  time: number;
+
+}

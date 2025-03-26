@@ -30,7 +30,7 @@ export type AsyncSelectFloatingSpec = Pick<ReturnType<typeof useFloating>, "refs
 
 export function useAsyncSelectFloating(): AsyncSelectFloatingSpec {
   const [open, setOpen] = useState(false);
-  const {refs, floatingStyles, context} = useFloating({open, onOpenChange: setOpen, placement: "bottom-start", whileElementsMounted: autoUpdate, middleware: [fitWidth(), flip()]});
+  const {refs, floatingStyles, context} = useFloating({open, onOpenChange: setOpen, placement: "top-start", whileElementsMounted: autoUpdate, middleware: [fitWidth(), flip()]});
   const {isMounted: mounted, status} = useTransitionStatus(context, {duration: 100});
   return {
     refs,
