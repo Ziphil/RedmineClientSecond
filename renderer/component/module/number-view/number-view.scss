@@ -9,6 +9,7 @@
   background-color: oklch(from var(--glob-normal-background-color) l c h / 0.5);
   display: inline-block;
   text-align: center;
+  flex: 0 0 auto;
   &[data-project] {
     padding-inline-start: 0.05em;
     letter-spacing: 0.05em;
@@ -17,4 +18,8 @@
     padding-inline-end: 0.03em;
     letter-spacing: -0.03em;
   }
+}
+
+.project {
+  font-size: 75%;
 }

@@ -1,17 +1,20 @@
 //
 
-import {AriaAttributes} from "react";
+import {AriaAttributes, CSSProperties} from "react";
+import {ToKebabCase, toKebabCase} from "/renderer/util/case";
 
 
-export function data(object: Record<string, string | boolean | null | undefined>): Partial<Record<`data-${string}`, string>> {
+export function data<N extends string>(object: DataObject<N>): DataProps<N> {
   const dataEntries = [];
   for (const [name, spec] of Object.entries(object)) {
-    const snakeName = toSnakeCase(name);
+    const kebabName = toKebabCase(name);
     if (spec !== null && spec !== undefined) {
       if (typeof spec === "string") {
-        dataEntries.push([`data-${snakeName}`, spec]);
+        dataEntries.push([`data-${kebabName}`, spec]);
+      } else if (typeof spec === "number") {
+        dataEntries.push([`data-${kebabName}`, spec.toString()]);
       } else if (typeof spec === "boolean" && spec) {
-        dataEntries.push([`data-${snakeName}`, "true"]);
+        dataEntries.push([`data-${kebabName}`, "true"]);
       }
     }
   }
@@ -19,7 +22,7 @@ export function data(object: Record<string, string | boolean | null | undefined>
   return data;
 }
 
-export function aria(object: AriaObject): AriaAttributes {
+export function aria<N extends AriaName>(object: AriaObject<N>): AriaProps<N> {
   const dataEntries = [];
   for (const [name, value] of Object.entries(object)) {
     dataEntries.push([`aria-${name}`, value]);
@@ -28,9 +31,13 @@ export function aria(object: AriaObject): AriaAttributes {
   return data;
 }
 
-function toSnakeCase(string: string): string {
-  return string.replace(/([A-Z])/g, (char) => "-" + char.toLowerCase());
-}
+export type DataObject<N extends string> = {[K in N]: string | number | boolean | null | undefined};
+export type DataProps<N extends string = string> = {[K in N as `data-${ToKebabCase<K>}`]: string};
 
-type AriaObject = {[K in keyof AriaAttributes as AriaName<K>]: AriaAttributes[K]};
-type AriaName<K> = K extends `aria-${infer N}` ? N : never;
+export type AriaName = ExtractAriaName<keyof AriaAttributes>;
+export type AriaObject<N extends AriaName> = {[K in N]: AriaAttributes[`aria-${K}`]};
+export type AriaProps<N extends AriaName = AriaName> = {[K in N as `aria-${K}`]: AriaAttributes[`aria-${K}`]};
+
+export type AdditionalProps = DataProps & {[K in string as `aria-${K}`]: AriaAttributes[keyof AriaAttributes]} & {style?: CSSProperties};
+
+type ExtractAriaName<K extends keyof AriaAttributes> = K extends `aria-${infer N}` ? N : never;

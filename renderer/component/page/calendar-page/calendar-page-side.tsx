@@ -2,10 +2,11 @@
 
 import {Dayjs} from "dayjs";
 import {ReactElement} from "react";
-import {SingleLineText} from "/renderer/component/atom/single-line-text";
 import {create} from "/renderer/component/create";
-import {NumberView} from "/renderer/component/module/number-view";
+import {AddActivityForm} from "/renderer/component/module/add-activity-form";
+import {IssueView} from "/renderer/component/module/issue-view";
 import {PageSide} from "/renderer/component/module/page";
+import {ProjectView} from "/renderer/component/module/project-view";
 import {TimeView} from "/renderer/component/module/time-view";
 import {useResponse} from "/renderer/hook/request";
 
@@ -39,13 +40,16 @@ export const CalendarPageSide = create(
             </div>
           )}
         </div>
-        {(activities !== undefined) && (
+        <div styleName="main">
           <ol styleName="list">
-            {activities.map((activity, index) => (
+            {activities?.map((activity, index) => (
               <li key={index} styleName="item">
                 <div styleName="item-first">
-                  <NumberView styleName="item-number" number={activity.issue?.id ?? null}/>
-                  <SingleLineText styleName="item-name">{activity.project.name}</SingleLineText>
+                  {(activity.issue !== null) ? (
+                    <IssueView issue={{id: activity.issue.id, name: activity.project.name}}/>
+                  ) : (
+                    <ProjectView project={activity.project}/>
+                  )}
                 </div>
                 <div styleName="item-second">
                   <TimeView styleName="item-time" time={activity.time}/>
@@ -53,7 +57,10 @@ export const CalendarPageSide = create(
               </li>
             ))}
           </ol>
-        )}
+          <div styleName="form">
+            <AddActivityForm/>
+          </div>
+        </div>
       </PageSide>
     );
 

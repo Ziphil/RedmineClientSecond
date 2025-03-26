@@ -12,6 +12,13 @@
   flex: 0 0 auto;
 }
 
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1 1 auto;
+}
+
 .date {
   row-gap: 2px;
   font-family: var(--glob-special-font-family);
@@ -87,4 +94,11 @@
   font-style: italic;
   color: var(--time-color);
   white-space: nowrap;
+}
+
+.form {
+  margin-block-start: 16px;
+  padding-block-start: 16px;
+  border-top: 1px solid var(--glob-normal-border-color);
+  flex: 0 0 auto;
 }

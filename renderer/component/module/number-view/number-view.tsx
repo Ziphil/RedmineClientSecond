@@ -9,15 +9,18 @@ export const NumberView = create(
   require("./number-view.scss"), "NumberView",
   function ({
     number,
+    project = false,
     className
   }: {
     number: number | null,
+    project?: boolean,
     className?: string
   }): ReactElement {
 
     return (
       <span styleName="root" className={className} {...data({project: number === null})}>
-        {number ?? "PJ"}
+        {(project) && <span styleName="project">P</span>}
+        {number}
       </span>
     );
 

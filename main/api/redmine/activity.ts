@@ -1,6 +1,7 @@
 //
 
 import dayjs from "dayjs";
+import {parseProjectName, parseProjectNumber} from "/main/api/redmine/project";
 import {Settings} from "/main/api/settings";
 import type {Activity, DateString} from "/renderer/type";
 
@@ -19,7 +20,7 @@ export async function fetchMonthlyActivities({month}: {month: string}): Promise<
   return groupedActivities;
 }
 
-export async function fetchDailyActivities({date}: {date: string}): Promise< Array<Activity>> {
+export async function fetchDailyActivities({date}: {date: string}): Promise<Array<Activity>> {
   console.log("api called", "fetchDailyActivities");
   const settings = await Settings.get();
   const response = await settings.client.get("/time_entries.json", {params: {
@@ -37,7 +38,8 @@ function createActivity(rawEntry: Record<string, any>): Activity {
     id: rawEntry["id"],
     project: {
       id: rawEntry["project"]["id"],
-      name: rawEntry["project"]["name"].replace(/^\d+(-|_)/, "")
+      name: parseProjectName(rawEntry["project"]["name"]),
+      number: parseProjectNumber(rawEntry["project"]["name"])
     },
     issue: ("issue" in rawEntry) ? {
       id: rawEntry["issue"]["id"]
