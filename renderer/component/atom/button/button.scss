@@ -16,9 +16,7 @@
 }
 
 .inner {
-  height: 16px + 6px * 2;
-  padding-block: 6px;
-  line-height: 1;
+  column-gap: 6px;
   display: flex;
   align-items: center;
   justify-content: center;

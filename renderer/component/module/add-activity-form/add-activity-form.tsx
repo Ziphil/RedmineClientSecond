@@ -5,7 +5,7 @@ import {faSparkles} from "@fortawesome/sharp-light-svg-icons";
 import {Dayjs} from "dayjs";
 import {ReactElement} from "react";
 import {Controller} from "react-hook-form";
-import {IconButton} from "/renderer/component/atom/icon-button";
+import {Button} from "/renderer/component/atom/button";
 import {Input} from "/renderer/component/atom/input";
 import {ProjectSelect} from "/renderer/component/atom/project-select";
 import {create} from "/renderer/component/create";
@@ -31,9 +31,10 @@ export const AddActivityForm = create(
         )}/>
         <div styleName="footer">
           <Input styleName="input" {...form.register("timeString")}/>
-          <IconButton type="submit">
+          <Button styleName="button" type="submit">
             <FontAwesomeIcon icon={faSparkles}/>
-          </IconButton>
+            <span>追加</span>
+          </Button>
         </div>
       </form>
     );

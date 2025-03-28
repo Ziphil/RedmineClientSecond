@@ -4,8 +4,8 @@ import {ForwardedRef, MouseEvent, ReactElement, ReactNode} from "react";
 import {createWithRef} from "/renderer/component/create";
 
 
-export const IconButton = createWithRef(
-  require("./icon-button.scss"), "IconButton",
+export const Button = createWithRef(
+  require("./button.scss"), "Button",
   function ({
     type = "button",
     onClick,

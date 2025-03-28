@@ -17,7 +17,8 @@
 
 .bottom {
   display: flex;
-  justify-content: flex-end;
+  flex-direction: row-reverse;
+  justify-content: space-between;
 }
 
 .time {
@@ -27,4 +28,13 @@
   font-style: italic;
   color: var(--time-color);
   white-space: nowrap;
+}
+
+.button {
+  margin-inline-start: 2px;
+  opacity: 1;
+  transition: opacity var(--glob-minimal-transition-duration), transform var(--glob-minimal-transition-duration);
+  .root:not(:hover) & {
+    opacity: 0;
+  }
 }
