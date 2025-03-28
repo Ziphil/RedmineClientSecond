@@ -8,7 +8,7 @@ import {Issue, Project} from "/renderer/type";
 
 
 const DEFAULT_VALUE = {
-  timeString: "2:00"
+  timeString: "2"
 } satisfies FormValue;
 type FormValue = {
   work?: Project | Issue,
@@ -29,7 +29,6 @@ export function useAddActivity(date: Dayjs): AddActivitySpec {
         time: parseTime(value.timeString),
         date: date.format("YYYY-MM-DD")
       }});
-      form.reset(DEFAULT_VALUE);
       await Promise.all([
         invalidateResponses("fetchMonthlyActivities"),
         invalidateResponses("fetchDailyActivities")

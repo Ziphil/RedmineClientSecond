@@ -30,7 +30,8 @@ export const ActivityItem = create(
     return (
       <li styleName="root">
         <div styleName="top">
-          <WorkView work={(activity.issue !== null) ? activity.issue : activity.project}/>
+          <WorkView work={activity.project}/>
+          {(activity.issue !== null) && <WorkView work={activity.issue}/>}
         </div>
         <div styleName="bottom">
           <TimeView styleName="time" time={activity.time}/>

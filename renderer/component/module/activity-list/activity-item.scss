@@ -4,7 +4,7 @@
 .root {
   padding-block: 6px;
   padding-inline: 6px;
-  row-gap: 4px;
+  row-gap: 6px;
   border: solid 1px var(--glob-normal-border-color);
   display: flex;
   flex-direction: column;
@@ -12,7 +12,9 @@
 }
 
 .top {
+  row-gap: 6px;
   display: flex;
+  flex-direction: column;
 }
 
 .bottom {

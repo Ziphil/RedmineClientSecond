@@ -51,6 +51,7 @@ export async function fetchDailyActivities({date}: {date: string}): Promise<Arra
   const issueIds = getIssueIds(activityResponse.data["timeEntries"]);
   const issueResponse = await settings.client.get("/issues.json", {params: {
     ids: issueIds.join(","),
+    statusId: "*",
     limit: 100
   }});
   const rawIssues = issueResponse.data["issues"] as Array<Record<string, any>>;
