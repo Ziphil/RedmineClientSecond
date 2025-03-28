@@ -1,7 +1,7 @@
 //
 
 import dayjs from "dayjs";
-import {parseProjectName, parseProjectNumber} from "/main/api/redmine/project";
+import {parseProjectName, parseProjectNumbers} from "/main/api/redmine/project";
 import {Settings} from "/main/api/settings";
 import type {Activity, ActivityForAdd, DateString} from "/renderer/type";
 
@@ -26,7 +26,8 @@ export async function fetchMonthlyActivities({month}: {month: string}): Promise<
     userId: "me",
     limit: 100
   }});
-  const activities = response.data["timeEntries"].map(createActivity);
+  const rawActivities = response.data["timeEntries"] as Array<Record<string, any>>;
+  const activities = rawActivities.map((rawActivity) => createActivity(rawActivity));
   const groupedActivities = groupActivity(activities);
   return groupedActivities;
 }
@@ -34,33 +35,47 @@ export async function fetchMonthlyActivities({month}: {month: string}): Promise<
 export async function fetchDailyActivities({date}: {date: string}): Promise<Array<Activity>> {
   console.log("api called", "fetchDailyActivities");
   const settings = await Settings.get();
-  const response = await settings.client.get("/time_entries.json", {params: {
+  const activityResponse = await settings.client.get("/time_entries.json", {params: {
     from: dayjs(date).format("YYYY-MM-DD"),
     to: dayjs(date).format("YYYY-MM-DD"),
     userId: "me",
     limit: 100
   }});
-  const activities = response.data["timeEntries"].map(createActivity);
+  const issueIds = getIssueIds(activityResponse.data["timeEntries"]);
+  const issueResponse = await settings.client.get("/issues.json", {params: {
+    ids: issueIds.join(","),
+    limit: 100
+  }});
+  const rawIssues = issueResponse.data["issues"] as Array<Record<string, any>>;
+  const rawActivities = activityResponse.data["timeEntries"] as Array<Record<string, any>>;
+  const activities = rawActivities.map((rawActivity) => createActivity(rawActivity, rawIssues));
   return activities;
 }
 
-function createActivity(rawEntry: Record<string, any>): Activity {
+function getIssueIds(rawActivities: Array<Record<string, any>>): Array<string> {
+  return rawActivities.flatMap((rawActivity) => ("issue" in rawActivity) ? [rawActivity["issue"]["id"]] : []);
+}
+
+function createActivity(rawActivity: Record<string, any>, rawIssues?: Array<Record<string, any>>): Activity {
+  const rawIssue = ("issue" in rawActivity) ? rawIssues?.find((rawIssue) => rawIssue["id"] === rawActivity["issue"]["id"]) : undefined;
   const activity = {
-    id: rawEntry["id"],
+    id: rawActivity["id"],
     project: {
-      id: rawEntry["project"]["id"],
-      name: parseProjectName(rawEntry["project"]["name"]),
-      number: parseProjectNumber(rawEntry["project"]["name"])
+      id: rawActivity["project"]["id"],
+      name: parseProjectName(rawActivity["project"]["name"]),
+      numbers: parseProjectNumbers(rawActivity["project"]["name"])
     },
-    issue: ("issue" in rawEntry) ? {
-      id: rawEntry["issue"]["id"]
+    issue: ("issue" in rawActivity) ? {
+      id: rawActivity["issue"]["id"],
+      number: rawActivity["issue"]["id"],
+      name: (rawIssue !== undefined) ? rawIssue["subject"] : "?"
     } : null,
     user: {
-      id: rawEntry["user"]["id"],
-      name: rawEntry["user"]["name"]
+      id: rawActivity["user"]["id"],
+      name: rawActivity["user"]["name"]
     },
-    time: rawEntry["hours"] * 1000 * 60 * 60,
-    date: rawEntry["spentOn"]
+    time: rawActivity["hours"] * 1000 * 60 * 60,
+    date: rawActivity["spentOn"]
   } satisfies Activity;
   return activity;
 }

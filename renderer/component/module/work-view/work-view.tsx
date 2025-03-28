@@ -4,23 +4,23 @@ import {ReactElement} from "react";
 import {SingleLineText} from "/renderer/component/atom/single-line-text";
 import {create} from "/renderer/component/create";
 import {NumberView} from "/renderer/component/module/number-view";
-import {Id} from "/renderer/type";
+import {LinkedIssue, LinkedProject} from "/renderer/type";
 
 
-export const IssueView = create(
-  require("./issue-view.scss"), "IssueView",
+export const WorkView = create(
+  require("./work-view.scss"), "WorkView",
   function ({
-    issue,
+    work,
     className
   }: {
-    issue: {id: Id, name: string},
+    work: LinkedProject | LinkedIssue,
     className?: string
   }): ReactElement {
 
     return (
       <span styleName="root" className={className}>
-        <NumberView styleName="number" number={issue.id} project={false}/>
-        <SingleLineText styleName="name">{issue.name}</SingleLineText>
+        <NumberView styleName="number" work={work}/>
+        <SingleLineText styleName="name">{work.name}</SingleLineText>
       </span>
     );
 

@@ -4,10 +4,9 @@ import {Dayjs} from "dayjs";
 import {ReactElement} from "react";
 import {create} from "/renderer/component/create";
 import {AddActivityForm} from "/renderer/component/module/add-activity-form";
-import {IssueView} from "/renderer/component/module/issue-view";
 import {PageSide} from "/renderer/component/module/page";
-import {ProjectView} from "/renderer/component/module/project-view";
 import {TimeView} from "/renderer/component/module/time-view";
+import {WorkView} from "/renderer/component/module/work-view";
 import {useResponse} from "/renderer/hook/request";
 
 
@@ -45,11 +44,7 @@ export const CalendarPageSide = create(
             {activities?.map((activity, index) => (
               <li key={index} styleName="item">
                 <div styleName="item-first">
-                  {(activity.issue !== null) ? (
-                    <IssueView issue={{id: activity.issue.id, name: activity.project.name}}/>
-                  ) : (
-                    <ProjectView project={activity.project}/>
-                  )}
+                  <WorkView work={(activity.issue !== null) ? activity.issue : activity.project}/>
                 </div>
                 <div styleName="item-second">
                   <TimeView styleName="item-time" time={activity.time}/>

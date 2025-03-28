@@ -3,7 +3,7 @@
 import {ReactElement, useCallback} from "react";
 import {AsyncSelect, AsyncSelectOption} from "/renderer/component/atom/async-select";
 import {create} from "/renderer/component/create";
-import {ProjectView} from "/renderer/component/module/project-view";
+import {WorkView} from "/renderer/component/module/work-view";
 import {Project} from "/renderer/type";
 
 
@@ -33,11 +33,11 @@ export const ProjectSelect = create(
         onSet={onSet}
         loadOptions={loadOptions}
         className={className}
-        renderLabel={(project) => <ProjectView project={project}/>}
+        renderLabel={(project) => <WorkView work={project}/>}
       >
         {(project) => (
           <AsyncSelectOption key={project.id}>
-            <ProjectView project={project}/>
+            <WorkView work={project}/>
           </AsyncSelectOption>
         )}
       </AsyncSelect>

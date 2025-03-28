@@ -19,7 +19,7 @@ function createProject(rawEntry: Record<string, any>): Project {
   const project = {
     id: rawEntry["id"],
     name: parseProjectName(rawEntry["name"]),
-    number: parseProjectNumber(rawEntry["name"])
+    numbers: parseProjectNumbers(rawEntry["name"])
   } satisfies Project;
   return project;
 }
@@ -29,9 +29,17 @@ export function parseProjectName(rawName: string): string {
   return name;
 }
 
-export function parseProjectNumber(rawName: string): number | null {
-  const numberString = rawName.match(/^(\d)(\d*)(-|_)/)?.[2] ?? null;
-  const number = numberString ? parseInt(numberString, 10) : null;
-  return number;
+export function parseProjectNumbers(rawName: string): {category: number, serial: number} | null {
+  const match = rawName.match(/^(\d)(\d*)(-|_)/);
+  if (match !== null) {
+    const categoryNumber = parseInt(match[1], 10);
+    const serialNumber = parseInt(match[2], 10);
+    if (!isNaN(categoryNumber) && !isNaN(serialNumber)) {
+      return {category: categoryNumber, serial: serialNumber};
+    } else {
+      return null;
+    }
+  } else {
+    return null;
+  }
 }
-

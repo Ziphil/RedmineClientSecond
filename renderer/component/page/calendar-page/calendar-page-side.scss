@@ -60,7 +60,7 @@
 
 .list {
   margin-block-start: 16px;
-  row-gap: 12px;
+  row-gap: 8px;
   display: flex;
   flex-direction: column;
   flex: 1 1 auto;
@@ -68,7 +68,10 @@
 }
 
 .item {
+  padding-block: 6px;
+  padding-inline: 6px;
   row-gap: 4px;
+  border: solid 1px var(--glob-normal-border-color);
   display: flex;
   flex-direction: column;
   flex: 0 0 auto;

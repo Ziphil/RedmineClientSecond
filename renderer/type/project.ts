@@ -6,16 +6,16 @@ import {Id} from "/renderer/type/common";
 export interface Project {
 
   id: Id;
+  numbers: {category: number, serial: number} | null;
   name: string;
-  number: number | null;
 
 }
 
 
-export interface SimpleProject {
+export interface LinkedProject {
 
   id: Id;
+  numbers: {category: number, serial: number} | null;
   name: string;
-  number: number | null;
 
 }
