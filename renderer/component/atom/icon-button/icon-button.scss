@@ -1,0 +1,25 @@
+@charset "utf-8";
+
+@use "sass:math" as *;
+
+
+.root {
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform var(--glob-minimal-transition-duration);
+  &:hover {
+    transform: scale(1.1);
+  }
+}
+
+.inner {
+  height: 16px + 6px * 2;
+  padding-block: 6px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

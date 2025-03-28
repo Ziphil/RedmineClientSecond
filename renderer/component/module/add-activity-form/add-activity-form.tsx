@@ -1,8 +1,11 @@
 /* eslint-disable react/jsx-closing-bracket-location */
 
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faSparkles} from "@fortawesome/sharp-light-svg-icons";
 import {Dayjs} from "dayjs";
 import {ReactElement} from "react";
 import {Controller} from "react-hook-form";
+import {IconButton} from "/renderer/component/atom/icon-button";
 import {Input} from "/renderer/component/atom/input";
 import {ProjectSelect} from "/renderer/component/atom/project-select";
 import {create} from "/renderer/component/create";
@@ -28,7 +31,9 @@ export const AddActivityForm = create(
         )}/>
         <div styleName="footer">
           <Input styleName="input" {...form.register("timeString")}/>
-          <button type="submit">送信</button>
+          <IconButton type="submit">
+            <FontAwesomeIcon icon={faSparkles}/>
+          </IconButton>
         </div>
       </form>
     );
