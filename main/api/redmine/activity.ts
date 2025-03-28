@@ -3,7 +3,7 @@
 import dayjs from "dayjs";
 import {parseProjectName, parseProjectNumbers} from "/main/api/redmine/project";
 import {Settings} from "/main/api/settings";
-import type {Activity, ActivityForAdd, DateString} from "/renderer/type";
+import type {Activity, ActivityForAdd, DateString, Id} from "/renderer/type";
 
 
 export async function addActivity({activity}: {activity: ActivityForAdd}): Promise<void> {
@@ -13,8 +13,15 @@ export async function addActivity({activity}: {activity: ActivityForAdd}): Promi
     projectId: activity.project?.id,
     issueId: activity.issue?.id,
     activityId: settings.activityId,
-    hours: activity.time / 1000 / 60 / 60
+    hours: activity.time / 1000 / 60 / 60,
+    spentOn: activity.date
   }});
+}
+
+export async function deleteActivity({id}: {id: Id}): Promise<void> {
+  console.log("api called", "deleteActivity");
+  const settings = await Settings.get();
+  await settings.client.delete(`/time_entries/${id}.json`);
 }
 
 export async function fetchMonthlyActivities({month}: {month: string}): Promise<Map<DateString, Array<Activity>>> {

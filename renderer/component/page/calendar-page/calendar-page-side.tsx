@@ -53,7 +53,7 @@ export const CalendarPageSide = create(
             ))}
           </ol>
           <div styleName="form">
-            <AddActivityForm/>
+            <AddActivityForm date={date}/>
           </div>
         </div>
       </PageSide>

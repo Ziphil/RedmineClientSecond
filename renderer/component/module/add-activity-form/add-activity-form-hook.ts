@@ -1,5 +1,6 @@
 //
 
+import {Dayjs} from "dayjs";
 import {BaseSyntheticEvent, useMemo} from "react";
 import {UseFormReturn, useForm} from "/renderer/hook/form";
 import {invalidateResponses} from "/renderer/hook/request";
@@ -19,20 +20,21 @@ export type AddActivitySpec = {
   handleSubmit: (event: BaseSyntheticEvent) => void
 };
 
-export function useAddActivity(): AddActivitySpec {
+export function useAddActivity(date: Dayjs): AddActivitySpec {
   const form = useForm<FormValue>(DEFAULT_VALUE, {});
   const handleSubmit = useMemo(() => form.handleSubmit(async (value) => {
     if (value.project) {
       await window.api.addActivity({activity: {
         project: {id: value.project.id},
-        time: parseTime(value.timeString)
+        time: parseTime(value.timeString),
+        date: date.format("YYYY-MM-DD")
       }});
       await Promise.all([
         invalidateResponses("fetchMonthlyActivities"),
         invalidateResponses("fetchDailyActivities")
       ]);
     }
-  }), [form]);
+  }), [form, date]);
   return {form, handleSubmit};
 }
 

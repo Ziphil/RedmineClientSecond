@@ -22,5 +22,6 @@ export interface ActivityForAdd {
   project?: {id: Id};
   issue?: {id: Id};
   time: number;
+  date: DateString;
 
 }

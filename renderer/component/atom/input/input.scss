@@ -1,0 +1,22 @@
+@charset "utf-8";
+
+@use "sass:math" as *;
+
+
+.root {
+  font-size: 16px;
+  background-color: oklch(0% 0 0 / 0.05);
+  box-shadow: inset 0px 2px 4px oklch(0% 0 0 / 0.05);
+  border: solid 1px var(--glob-normal-border-color);
+  display: flex;
+}
+
+.input {
+  height: 16px + 6px * 2;
+  padding-inline: 8px;
+  padding-block: 6px;
+  line-height: 1;
+  flex: 1 1 auto;
+  order: 10;
+  box-sizing: border-box;
+}

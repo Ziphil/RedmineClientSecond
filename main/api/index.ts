@@ -2,6 +2,7 @@
 
 import {
   addActivity,
+  deleteActivity,
   fetchDailyActivities,
   fetchMonthlyActivities
 } from "/main/api/redmine/activity";
@@ -15,6 +16,7 @@ import {
 
 export const API_CATALOG = {
   addActivity,
+  deleteActivity,
   fetchMonthlyActivities,
   fetchDailyActivities,
   searchProjects,

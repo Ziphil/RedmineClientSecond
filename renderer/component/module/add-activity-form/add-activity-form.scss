@@ -1,1 +1,20 @@
 @charset "utf-8";
+
+
+.root {
+  row-gap: 6px;
+  display: flex;
+  flex-direction: column;
+}
+
+.footer {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.input {
+  width: 96px;
+  text-align: end;
+}
