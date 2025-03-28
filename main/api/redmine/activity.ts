@@ -10,8 +10,8 @@ export async function addActivity({activity}: {activity: ActivityForAdd}): Promi
   console.log("api called", "addActivity");
   const settings = await Settings.get();
   await settings.client.post("/time_entries.json", {timeEntry: {
-    projectId: activity.project?.id,
-    issueId: activity.issue?.id,
+    projectId: (activity.work.type === "project") ? activity.work.id : undefined,
+    issueId: (activity.work.type === "issue") ? activity.work.id : undefined,
     activityId: settings.activityId,
     hours: activity.time / 1000 / 60 / 60,
     spentOn: activity.date
@@ -68,11 +68,13 @@ function createActivity(rawActivity: Record<string, any>, rawIssues?: Array<Reco
   const activity = {
     id: rawActivity["id"],
     project: {
+      type: "project",
       id: rawActivity["project"]["id"],
       name: parseProjectName(rawActivity["project"]["name"]),
       numbers: parseProjectNumbers(rawActivity["project"]["name"])
     },
     issue: ("issue" in rawActivity) ? {
+      type: "issue",
       id: rawActivity["issue"]["id"],
       number: rawActivity["issue"]["id"],
       name: (rawIssue !== undefined) ? rawIssue["subject"] : "?"

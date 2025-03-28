@@ -1,8 +1,8 @@
 //
 
 import {DateString, Id} from "/renderer/type/common";
-import {LinkedIssue} from "/renderer/type/issue";
-import {LinkedProject} from "/renderer/type/project";
+import {Issue, LinkedIssue} from "/renderer/type/issue";
+import {LinkedProject, Project} from "/renderer/type/project";
 
 
 export interface Activity {
@@ -19,8 +19,7 @@ export interface Activity {
 
 export interface ActivityForAdd {
 
-  project?: {id: Id};
-  issue?: {id: Id};
+  work: Project | Issue;
   time: number;
   date: DateString;
 

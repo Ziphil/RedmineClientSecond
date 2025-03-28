@@ -4,14 +4,14 @@ import {Dayjs} from "dayjs";
 import {BaseSyntheticEvent, useMemo} from "react";
 import {UseFormReturn, useForm} from "/renderer/hook/form";
 import {invalidateResponses} from "/renderer/hook/request";
-import {Project} from "/renderer/type";
+import {Issue, Project} from "/renderer/type";
 
 
 const DEFAULT_VALUE = {
   timeString: "2:00"
 } satisfies FormValue;
 type FormValue = {
-  project?: Project,
+  work?: Project | Issue,
   timeString: string
 };
 
@@ -23,12 +23,13 @@ export type AddActivitySpec = {
 export function useAddActivity(date: Dayjs): AddActivitySpec {
   const form = useForm<FormValue>(DEFAULT_VALUE, {});
   const handleSubmit = useMemo(() => form.handleSubmit(async (value) => {
-    if (value.project) {
+    if (value.work) {
       await window.api.addActivity({activity: {
-        project: {id: value.project.id},
+        work: value.work,
         time: parseTime(value.timeString),
         date: date.format("YYYY-MM-DD")
       }});
+      form.reset(DEFAULT_VALUE);
       await Promise.all([
         invalidateResponses("fetchMonthlyActivities"),
         invalidateResponses("fetchDailyActivities")

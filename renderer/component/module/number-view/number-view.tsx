@@ -17,10 +17,10 @@ export const NumberView = create(
 
     return (
       <span styleName="root" className={className}>
-        {("numbers" in work) && (
+        {(work.type === "project") && (
           <span styleName="project">P{work.numbers?.category}-</span>
         )}
-        {("numbers" in work) ? work.numbers?.serial : work.number}
+        {(work.type === "project") ? work.numbers?.serial : work.number}
       </span>
     );
 

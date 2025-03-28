@@ -1,9 +1,18 @@
 //
 
-import {Id} from "/renderer/type/common";
+import {Id, Typed} from "/renderer/type/common";
 
 
-export interface LinkedIssue {
+export interface Issue extends Typed<"issue"> {
+
+  id: Id;
+  number: number;
+  name: string;
+
+}
+
+
+export interface LinkedIssue extends Typed<"issue"> {
 
   id: Id;
   number: number;

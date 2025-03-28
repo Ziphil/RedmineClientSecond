@@ -7,7 +7,7 @@ import {ReactElement} from "react";
 import {Controller} from "react-hook-form";
 import {Button} from "/renderer/component/atom/button";
 import {Input} from "/renderer/component/atom/input";
-import {ProjectSelect} from "/renderer/component/atom/project-select";
+import {WorkSelect} from "/renderer/component/atom/work-select";
 import {create} from "/renderer/component/create";
 import {useAddActivity} from "./add-activity-form-hook";
 
@@ -26,8 +26,8 @@ export const AddActivityForm = create(
 
     return (
       <form styleName="root" className={className} onSubmit={handleSubmit}>
-        <Controller name="project" control={form.control} render={({field}) => (
-          <ProjectSelect value={field.value} onSet={field.onChange}/>
+        <Controller name="work" control={form.control} render={({field}) => (
+          <WorkSelect work={field.value} onSet={field.onChange}/>
         )}/>
         <div styleName="footer">
           <Input styleName="input" {...form.register("timeString")}/>
