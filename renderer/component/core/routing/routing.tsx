@@ -1,9 +1,8 @@
 /* eslint-disable react/jsx-closing-bracket-location */
 
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faCircleNotch} from "@fortawesome/sharp-light-svg-icons";
 import {ReactElement, Suspense} from "react";
 import {RouterProvider, createHashRouter} from "react-router-dom";
+import {LoadingIcon} from "/renderer/component/atom/loading-icon";
 import {create} from "/renderer/component/create";
 import {CalendarPage} from "/renderer/component/page/calendar-page";
 import {ChartPage} from "/renderer/component/page/chart-page";
@@ -27,7 +26,7 @@ export const Routing = create(
     return (
       <Suspense fallback={(
         <div styleName="loading">
-          <FontAwesomeIcon styleName="icon" icon={faCircleNotch} spin={true}/>
+          <LoadingIcon styleName="icon"/>
         </div>
       )}>
         <RouterProvider router={router}/>

@@ -67,36 +67,9 @@
   overflow: hidden;
 }
 
-.item {
-  padding-block: 6px;
-  padding-inline: 6px;
-  row-gap: 4px;
-  border: solid 1px var(--glob-normal-border-color);
-  display: flex;
-  flex-direction: column;
-  flex: 0 0 auto;
-}
-
-.item-first {
-  display: flex;
-}
-
-.item-second {
-  display: flex;
-  justify-content: flex-end;
-}
-
-.item-name {
-  word-break: break-all;
-}
-
-.item-time {
-  padding-inline-end: 0.1em;
-  font-size: 24px;
-  font-family: var(--glob-special-font-family);
-  font-style: italic;
-  color: var(--time-color);
-  white-space: nowrap;
+.loading {
+  font-size: 32px;
+  color: rgba(white, 0.5);
 }
 
 .form {

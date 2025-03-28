@@ -2,11 +2,12 @@
 
 import {Dayjs} from "dayjs";
 import {ReactElement} from "react";
+import {LoadingIcon} from "/renderer/component/atom/loading-icon";
 import {create} from "/renderer/component/create";
+import {ActivityList} from "/renderer/component/module/activity-list";
 import {AddActivityForm} from "/renderer/component/module/add-activity-form";
 import {PageSide} from "/renderer/component/module/page";
 import {TimeView} from "/renderer/component/module/time-view";
-import {WorkView} from "/renderer/component/module/work-view";
 import {useResponse} from "/renderer/hook/request";
 
 
@@ -40,18 +41,13 @@ export const CalendarPageSide = create(
           )}
         </div>
         <div styleName="main">
-          <ol styleName="list">
-            {activities?.map((activity, index) => (
-              <li key={index} styleName="item">
-                <div styleName="item-first">
-                  <WorkView work={(activity.issue !== null) ? activity.issue : activity.project}/>
-                </div>
-                <div styleName="item-second">
-                  <TimeView styleName="item-time" time={activity.time}/>
-                </div>
-              </li>
-            ))}
-          </ol>
+          <div styleName="list">
+            {(activities !== undefined) ? (
+              <ActivityList activities={activities}/>
+            ) : (
+              <LoadingIcon styleName="loading"/>
+            )}
+          </div>
           <div styleName="form">
             <AddActivityForm date={date}/>
           </div>

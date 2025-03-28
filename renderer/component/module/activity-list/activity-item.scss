@@ -1,0 +1,30 @@
+@charset "utf-8";
+
+
+.root {
+  padding-block: 6px;
+  padding-inline: 6px;
+  row-gap: 4px;
+  border: solid 1px var(--glob-normal-border-color);
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 auto;
+}
+
+.top {
+  display: flex;
+}
+
+.bottom {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.time {
+  padding-inline-end: 0.1em;
+  font-size: 24px;
+  font-family: var(--glob-special-font-family);
+  font-style: italic;
+  color: var(--time-color);
+  white-space: nowrap;
+}
