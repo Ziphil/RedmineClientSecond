@@ -69,9 +69,9 @@
     }
   },
   "build": {
-    "appId": "com.ziphil.redmine-client",
-    "productName": "Redmine Client",
-    "artifactName": "redmine-client-setup.${ext}",
+    "appId": "com.ziphil.redmine-client-second",
+    "productName": "Redmine Client Second",
+    "artifactName": "redmine-client-second-setup.${ext}",
     "files": [
       "dist/**/*"
     ],
