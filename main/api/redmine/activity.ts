@@ -1,7 +1,7 @@
 //
 
 import dayjs from "dayjs";
-import {parseProjectName, parseProjectNumbers} from "/main/api/redmine/project";
+import {parseProjectName, parseProjectNumbers} from "./work";
 import {Settings} from "/main/api/settings";
 import type {Activity, ActivityForAdd, DateString, Id} from "/renderer/type";
 
